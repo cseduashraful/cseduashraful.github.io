@@ -1,0 +1,87 @@
+/* General Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #f4f4f9;
+    color: #333;
+    line-height: 1.6;
+    font-size: 16px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Header Styling */
+header {
+    width: 100%;
+    background-color: #2b8a3e;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+/* Container Styling */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Main Content Layout */
+.main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+/* Column Layout */
+.column-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.column {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    margin: 10px;
+    min-width: 280px;
+}
+
+/* Consistent Width for Projects and Publications */
+.projects, .publications {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    width: calc(100% - 40px); /* Ensures both sections have the same width */
+    max-width: 1200px;
+}
+
+.projects h2, .publications h2 {
+    color: #2b8a3e;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Paragraph Styling */
+p {
+    margin-bottom: 15px;
+}
+
+strong {
+    color: #4a4a4a;
+}
