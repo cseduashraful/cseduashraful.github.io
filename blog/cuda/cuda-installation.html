@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Installing CUDA on Ubuntu 22.04</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="main-container">
+        <div class="content">
+            <h1>Installing CUDA on Ubuntu 22.04</h1>
+            <p>This guide walks you through the steps to install CUDA on Ubuntu 22.04, enabling GPU acceleration for tasks like deep learning and high-performance computing.</p>
+
+            <h2>1. Introduction</h2>
+            <p>We will install the CUDA toolkit, set up our environment, and verify the installation. Having CUDA properly installed is essential for leveraging the computational power of NVIDIA GPUs.</p>
+
+            <h2>2. Prerequisites</h2>
+            <ul>
+                <li>An NVIDIA GPU that supports CUDA.</li>
+                <li>Ubuntu 22.04 installed on your system.</li>
+                <li>Basic knowledge of the Linux command line.</li>
+            </ul>
+
+            <h2>3. Step 1: Access the CUDA Download Page</h2>
+            <p>Visit the official <a href="https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&Distribution=Ubuntu&target_version=22.04&target_type=deb_network" target="_blank">CUDA Downloads Page</a> and select the correct options for your OS, architecture, and version.</p>
+
+            <h2>4. Step 2: Download the Installation Package</h2>
+            <p>Follow the instructions on the NVIDIA website to download the `.deb` package. You can use the `wget` command to download it directly from the terminal.</p>
+
+            <h2>5. Step 3: Install the CUDA Toolkit</h2>
+            <ol>
+                <li>Update the package list:
+                    <pre><code>sudo apt-get update</code></pre>
+                </li>
+                <li>Install the downloaded package:
+                    <pre><code>sudo dpkg -i cuda-repo-ubuntu2204-X.Y-local_X.Y.Z-1_amd64.deb</code></pre>
+                    <p>Replace <code>X.Y</code> and <code>X.Y.Z</code> with the version numbers from the download link.</p>
+                </li>
+                <li>Install CUDA:
+                    <pre><code>sudo apt-get install cuda</code></pre>
+                </li>
+            </ol>
+
+            <h2>6. Step 4: Verify the Installation</h2>
+            <p>Run the following command to verify the CUDA installation:</p>
+            <pre><code>nvcc --version</code></pre>
+            <p>You should see the version of the CUDA compiler if the installation was successful.</p>
+
+            <div class="navigation">
+                <a href="cuda_intro.html" class="nav-link">Previous Post</a>
+                <a href="#" class="nav-link">Next Post</a>
+            </div>
+
+            <div class="footer">
+                <p>&copy; 2024 Your Name. All rights reserved.</p>
+            </div>
+        </div>
+
+        <aside class="sidebar">
+            <h3>Highlighted Blog Posts</h3>
+            <ul class="highlighted-posts">
+                <li><a href="#">Understanding CUDA Memory Hierarchy</a></li>
+                <li><a href="#">PyTorch Custom CUDA Extensions</a></li>
+                <li><a href="#">Advanced Thread Synchronization Techniques</a></li>
+                <li><a href="#">cuBLAS and cuDNN Optimization Tips</a></li>
+                <li><a href="#">Real-World Applications of CUDA</a></li>
+            </ul>
+        </aside>
+    </div>
+</body>
+</html>
