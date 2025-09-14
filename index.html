@@ -1,143 +1,405 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Md. Ashraful Islam - Academic Profile</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Md Ashraful Islam — PhD Candidate</title>
+  <meta name="description" content="Md Ashraful Islam — PhD student in Machine Learning Systems and Temporal Graph Neural Networks. Research, publications, software, teaching, and contact." />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="Md Ashraful Islam — PhD Candidate" />
+  <meta property="og:description" content="Research on ML Systems & Temporal Graph Neural Networks. Publications, software, teaching, and contact." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://cseduashraful.github.io/" />
+  <meta property="og:image" content="assets/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Favicon (replace with your own) -->
+  <link rel="icon" href="assets/favicon.ico" />
+
+  <!-- Fonts: system stack for speed/clarity -->
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #0f172a; /* slate-900 */
+      --muted: #475569; /* slate-600 */
+      --soft: #e2e8f0; /* slate-200 */
+      --card: #f8fafc; /* slate-50 */
+      --accent: #2563eb; /* blue-600 */
+      --accent-weak: #dbeafe; /* blue-100 */
+      --code-bg: #f1f5f9; /* slate-100 */
+      --shadow: 0 10px 20px rgba(2,6,23,.07), 0 2px 6px rgba(2,6,23,.06);
+      --radius: 16px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b1020; /* near-navy */
+        --text: #e5e7eb; /* slate-200 */
+        --muted: #94a3b8; /* slate-400 */
+        --soft: #1e293b; /* slate-800 */
+        --card: #0f172a; /* slate-900 */
+        --accent: #60a5fa; /* blue-400 */
+        --accent-weak: #0b2549; /* custom dark tint */
+        --code-bg: #0b1220;
+      }
+    }
+
+    /* Base */
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Helvetica Neue", "Noto Sans", Arial, "Apple Color Emoji",
+        "Segoe UI Emoji";
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .container { max-width: 1000px; padding: 0 20px; margin: 0 auto; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+    /* Header */
+    header {
+      position: sticky; top: 0; z-index: 40;
+      backdrop-filter: saturate(140%) blur(6px);
+      background: color-mix(in oklab, var(--bg) 86%, transparent);
+      border-bottom: 1px solid var(--soft);
+    }
+    .nav {
+      display: flex; align-items: center; gap: 16px; padding: 14px 0;
+    }
+    .brand { font-weight: 700; letter-spacing: .2px; }
+    nav a { color: var(--muted); text-decoration: none; padding: 6px 10px; border-radius: 10px; }
+    nav a:hover, nav a:focus { background: var(--accent-weak); color: var(--text); }
+    .nav-spacer { flex: 1; }
+    .btn {
+      display: inline-flex; align-items: center; gap: .5rem; border: 1px solid var(--soft);
+      background: var(--card); color: var(--text);
+      padding: 10px 14px; border-radius: 999px; text-decoration: none; box-shadow: var(--shadow);
+    }
+    .btn:hover { border-color: var(--accent); }
+
+    /* Hero */
+    .hero { padding: 48px 0 18px; }
+    .hero-card {
+      display: grid; grid-template-columns: 112px 1fr; gap: 24px;
+      background: var(--card); border: 1px solid var(--soft); border-radius: var(--radius);
+      padding: 24px; box-shadow: var(--shadow);
+    }
+    .avatar { width: 112px; height: 112px; border-radius: 14px; object-fit: cover; border: 1px solid var(--soft); }
+    .chip { display: inline-flex; align-items: center; gap: 8px; font-size: .9rem; color: var(--muted); background: var(--accent-weak); padding: 6px 10px; border-radius: 999px; }
+    .links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+
+    /* Sections */
+    section { padding: 26px 0; }
+    section h2 { margin: 0 0 10px; font-size: 1.5rem; letter-spacing: .2px; }
+    .card {
+      background: var(--card); border: 1px solid var(--soft); border-radius: var(--radius);
+      padding: 20px; box-shadow: var(--shadow);
+    }
+    .grid { display: grid; gap: 16px; }
+    @media (min-width: 800px) {
+      .grid.two { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* Lists */
+    ul.clean { list-style: none; padding: 0; margin: 0; }
+    ul.clean li { margin: 8px 0; }
+
+    /* Publication items */
+    .pub { margin: 0; }
+    .pub h3 { font-size: 1.05rem; margin: 0; }
+    .pub .meta { color: var(--muted); font-size: .95rem; margin: 2px 0 8px; }
+    .tags { display: inline-flex; flex-wrap: wrap; gap: 6px; }
+    .tag { display: inline-block; border: 1px solid var(--soft); padding: 4px 8px; border-radius: 999px; font-size: .82rem; color: var(--muted); text-decoration: none; }
+    .tag:hover { border-color: var(--accent); color: var(--text); }
+
+    /* Footer */
+    footer { padding: 32px 0 48px; color: var(--muted); font-size: .95rem; }
+
+    /* Small UX helpers */
+    .kbd { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; background: var(--code-bg); border: 1px solid var(--soft); padding: 2px 6px; border-radius: 8px; font-size: .85em; }
+    .pill { background: var(--accent-weak); border-radius: 999px; padding: 3px 8px; font-size: .8rem; }
+
+    /* Mobile tweaks */
+    @media (max-width: 640px) {
+      .hero-card { grid-template-columns: 1fr; }
+      .avatar { width: 88px; height: 88px; }
+      nav { display: none; }
+      .nav-toggle { display: inline-flex !important; }
+    }
+    .nav-toggle { display: none; border: 1px solid var(--soft); background: var(--card); padding: 8px 12px; border-radius: 10px; }
+    .mobile-nav { display: none; padding: 10px 0 14px; }
+    .mobile-nav a { display: inline-block; margin: 6px 6px 0 0; }
+  </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <a href="new_index.html"><h1>Md. Ashraful Islam</h1></a>
-            
-            <p>Ph.D. Student - Computer Science, UMass Amherst</p>
-        </div>
-    </header>
-
-    <div class="main-content">
-        <div class="column-container">
-            <div class="column education">
-                <h2>Education</h2>
-                <p><strong>Fall 23-Ongoing</strong><br>
-                Ph.D. - Computer Science<br>
-                University of Massachusetts Amherst, MA, USA</p>
-
-                <p><strong>2016-2017</strong><br>
-                M. S. - Computer Science and Engineering<br>
-                University of Dhaka, Bangladesh</p>
-
-                <p><strong>2012 - 2015</strong><br>
-                B. Sc. - Computer Science and Engineering<br>
-                University of Dhaka, Bangladesh</p>
-
-                <!-- <p><strong>2011</strong><br>
-                Higher Secondary Certificate<br>
-                Amrita Lal Dey College, Barisal, Bangladesh</p>
-
-                <p><strong>2009</strong><br>
-                Secondary School Certificate<br>
-                Babuganj Pilot Secondary School, Barisal, Bangladesh</p> -->
-            </div>
-
-            <div class="column work-experience">
-                <h2>Work Experience</h2>
-                <p><strong>Jun 22 - Ongoing</strong> (Currently on Study Leave)<br>
-                Assistant Professor<br>
-                Dept. of CSE, University of Dhaka, Bangladesh</p>
-
-                <p><strong>Sep 19 - Jun 22</strong><br>
-                Lecturer<br>
-                Dept. of CSE, University of Dhaka, Bangladesh</p>
-
-                <p><strong>Apr 18 - Sep 19</strong><br>
-                Lecturer<br>
-                Dept. of CSE, East West University, Bangladesh</p>
-
-                <p><strong>May 16 - Apr 18</strong><br>
-                Lecturer<br>
-                Dept. of CSE, United International University, Bangladesh</p>
-
-                <p><strong>Mar 16 - May 16</strong><br>
-                Software Engineer<br>
-                Enosis Solutions, Bangladesh</p>
-            </div>
-        </div>
-
-        <div class="projects">
-            <h2>Past Projects</h2>
-            <p><strong>2022-2023</strong><br>
-            Speech Synthesis in Bangla<br>
-            Project Co-Investigator<br>
-            Organization: University Grant Commission (UGC Grant 2022-2023)</p>
-
-            <p><strong>2021-2022</strong><br>
-            Assessment of Coastal and Marine Biodiversity Resources and Ecosystems to Implement the Blue Economy Action Plan<br>
-            Database Consultant<br>
-            Organization: Department of Environment, Bangladesh</p>
-
-            <p><strong>2021-2022</strong><br>
-            Development of A Robust Bangla Language Model and a Bangla NLP Server<br>
-            Project Co-Investigator<br>
-            Organization: University of Dhaka (Centennial Research Grant)</p>
-        </div>
-
-        <div class="container publications">
-            <h2>Publications</h2>
-            <p><strong>Graph-based Substructure Pattern Mining with Edge-Weight</strong><br>
-            Md. Ashraful Islam, Chowdhury Farhan Ahmed, Carson K. Leung, Md. Tanvir Alam, Applied Intelligence (Springer), 2024</p>  
-
-            <p><strong>BaNeL: an encoder-decoder based Bangla neural lemmatizer</strong><br>
-            Md. Ashraful Islam, Md Towhiduzzaman, Md Bhuiyan, Tauhidul Islam, Abdullah Al Maruf, Jesan Ahammed Ovi, SN Applied Sciences (Springer), 2022</p>
-
-            <p><strong>
-                BaNeP: An End-to-End Neural Network Based Model for Bangla Parts-of-Speech Tagging</strong><br>
-                Jesan Ahammed Ovi, Md. Ashraful Islam, Md Rezaul Karim, IEEE Access, 2022</p>
-        
-                <p><strong>
-                UGMINE: Utility Based Graph Mining</strong><br>
-                Md. Tanvir Alam, Amit Roy, Chowdhury Farhan Ahmed, Md. Ashraful Islam, Carson K. Leung, Applied Intelligence (Springer), 2022</p>
-        
-                <p><strong>
-                Weighted frequent sequential pattern mining</strong><br>
-                Md. Ashraful Islam, Mahfuzur Rahman Rafl, Al-amin Azad, Jesan Ahammed Ovi, Applied Intelligence (Springer), 2021</p>
-        
-        
-        
-        
-                <p><strong>
-                    Weighted Clickstream Mining Using Pre-order Linked Web-Access Pattern Tree</strong><br>
-                    Abu Naser, Nusrat Sultana, Md. Ashraful Islam, Jesan Ahammed Ovi, International Conference for Emerging Technology (IEEE), 2021</p>
-            
-                    <p><strong>
-                    An Efficient Approach for Mining Weighted Frequent Patterns from Data Stream</strong><br>
-                    Jesan Ahammed Ovi, Md. Ashraful Islam, Jannatul Ferdosh Nima, International Conference for Emerging Technology (IEEE), 2021</p>
-            
-                    <p><strong>
-                    Mining High Utility Subgraphs</strong><br>
-                    Md Tanvir Alam, Amit Roy, Chowdhury Farhan Ahmed, Md. Ashraful Islam, Carson K Leung, International Conference on Data Mining Workshops (IEEE), 2021</p>
-        
-        
-                    <p><strong>
-                        Factoid Question Answering over Bangla Comprehension</strong><br>
-                        Md Asiful Haque, Shamima Sultana, Md Jayedul Islam, Md. Ashraful Islam, Jesan Ahammed Ovi, International Symposium on Multidisciplinary Studies and Innovative Technologies (IEEE), 2020</p>
-                
-                        <p><strong>
-                        An efficient approach for sequential pattern mining on GPU using CUDA platform</strong><br>
-                        Shah Mohammed Nuruddin, Md Didarul Islam, Md Shaflqul Alam, Jesan Ahammed Ovi, Md. Ashraful Islam, International Symposium on Multidisciplinary Studies and Innovative Technologies (IEEE), 2020</p>
-                
-        
-                        <p><strong>
-                            WeFreS: weighted frequent subgraph mining in a single large graph</strong><br>
-                            Nahian Ashraf, Riddho Ridwanul Haque, Md. Ashraful Islam, Chowdhury Farhan Ahmed, Carson K Leung, Jiaxing Jason Mai, Bryan H Wodi, Industrial conference on data mining (IBAI Publishing), 2019</p>
-                    
-                         
-                <p><strong>
-                WFSM-MaxPWS: an efficient approach for mining weighted frequent subgraphs from edge-weighted graph databases</strong><br>
-                Md. Ashraful Islam, Chowdhury Farhan Ahmed, Carson K Leung, Calvin SH Hoi, Pacific-asia conference on knowledge discovery and data mining (Springer), 2018</p>
-        
-        </div>
+  <a class="sr-only" href="#main">Skip to content</a>
+  <header>
+    <div class="container">
+      <div class="nav">
+        <div class="brand">Md Ashraful Islam</div>
+        <nav aria-label="Primary">
+          <a href="#about">About</a>
+          <a href="#research">Research</a>
+          <a href="#publications">Publications</a>
+          <a href="#software">Software</a>
+          <a href="#teaching">Teaching</a>
+          <a href="#service">Service</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <div class="nav-spacer"></div>
+        <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileNav">Menu</button>
+        <button class="btn" id="themeToggle" aria-pressed="false" title="Toggle theme">💡 Theme</button>
+      </div>
+      <div class="mobile-nav" id="mobileNav" aria-hidden="true">
+        <a href="#about">About</a>
+        <a href="#research">Research</a>
+        <a href="#publications">Publications</a>
+        <a href="#software">Software</a>
+        <a href="#teaching">Teaching</a>
+        <a href="#service">Service</a>
+        <a href="#contact">Contact</a>
+      </div>
     </div>
+  </header>
+
+  <main id="main" class="container">
+    <!-- Hero / Intro -->
+    <section class="hero" id="about">
+      <div class="hero-card">
+        <img class="avatar" src="images/profile.jpg" alt="Portrait of Md Ashraful Islam" />
+        <div>
+          <h1 style="margin: 0 0 4px">Md Ashraful Islam</h1>
+          <div class="chip">PhD Student · UMass Amherst · Machine Learning Systems</div>
+          <p style="margin: 12px 0 0">
+            I am a PhD student in the Computer Science Department at
+            <a href="https://www.umass.edu/" target="_blank" rel="noopener">UMass Amherst</a>, advised by Prof. Marco Serafini.
+            My research focuses on <strong>Temporal Graph Neural Networks</strong>, <strong>Relational Deep Learning</strong>, and
+            efficient <strong>ML systems</strong> (C++/CUDA, PyTorch, PyG/DGL) for large-scale dynamic graphs.
+          </p>
+          <div class="links">
+            <a class="btn" href="pdf/cv.pdf">📄 CV</a>
+            <a class="btn" href="mailto:mdashrafulis@umass.edu">✉️ Email</a>
+            <a class="btn" href="https://scholar.google.com/citations?user=UD5-rcAAAAAJ&hl=en" target="_blank" rel="noopener">🎓 Google Scholar</a>
+            <a class="btn" href="https://github.com/cseduashraful" target="_blank" rel="noopener">🐙 GitHub</a>
+            <a class="btn" href="https://www.linkedin.com/in/md-ashraful-islam-56759880/" target="_blank" rel="noopener">💼 LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+   <section class="grid two">
+  <div class="card">
+    <h2>Research Interests</h2>
+    <ul>
+      <li>Temporal Graph Learning</li>
+      <li>Relational Deep Learning</li>
+      <li>High-performance training systems (CUDA kernels, PyBind11, DGL/PyG)</li>
+      <li>Anomaly Detection using Provenance Graph</li>
+      <li>Data Mining (Graph, Sequence)</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h2>News</h2>
+    <ul class="clean" id="newsList">
+      <li><span class="pill">2025</span> Drafting VLDB paper on SDTGNN and multi-version memory graphs.</li>
+      <li><span class="pill">2025</span> Interviewed with Kumo AI & Matthias Fey for research roles.</li>
+      <li><span class="pill">2024</span> Paper accepted at XYZ Conference.</li>
+      <li><span class="pill">2023</span> Teaching award from UMass Amherst.</li>
+      <li><span class="pill">2019</span> Internship at ABC Labs.</li>
+      <li><span class="pill">2018</span> Awarded Dean's Award & Prof. Dr. Lutfar Rahman Award.</li>
+    </ul>
+    <a class="btn" href="news.html">More News →</a>
+  </div>
+</section>
+
+<script>
+  // Limit visible news to 5 items
+  const newsList = document.getElementById('newsList');
+  if (newsList) {
+    const items = newsList.querySelectorAll('li');
+    items.forEach((li, idx) => {
+      if (idx >= 5) li.style.display = 'none'; // hide after 5th
+    });
+  }
+</script>
+
+    <!-- Publications -->
+    <section id="publications">
+      <h2>Selected Publications & Preprints</h2>
+      <div class="grid">
+        <article class="card pub">
+          <h3>SDTGNN: Scalable Dependency-Aware Memory-based Temporal GNN Framework</h3>
+          <p class="meta">M. A. Islam, <em>et al.</em> (manuscript in preparation)</p>
+          <p>We introduce a multi-version memory update graph with chunk-based streaming to reduce staleness and improve GPU utilization during temporal training.</p>
+          <div class="tags">
+            <a class="tag" href="#">PDF</a>
+            <a class="tag" href="#">arXiv</a>
+            <a class="tag" href="#">Code</a>
+            <span class="tag">Temporal GNN</span>
+          </div>
+        </article>
+
+        <article class="card pub">
+          <h3>STFT‑GradTTS: A Robust Diffusion‑based Bangla TTS with iSTFT Decoder</h3>
+          <p class="meta">M. A. Islam, <em>et al.</em> (under review)</p>
+          <p>A diffusion-based TTS system for Bangla leveraging an iSTFT decoder with robustness to noisy inputs.</p>
+          <div class="tags">
+            <a class="tag" href="#">Preprint</a>
+            <a class="tag" href="#">Audio Samples</a>
+            <span class="tag">Speech</span>
+          </div>
+        </article>
+      </div>
+
+      <details style="margin-top: 12px;">
+        <summary>Show full list</summary>
+        <div class="grid" style="margin-top: 12px;">
+          <article class="card pub">
+            <h3>APANMemory for Dynamic Link Prediction</h3>
+            <p class="meta">Tech Report, 2025</p>
+            <p>Mailbox-efficient memory variant for APAN with configurable capacity and fast negative sampling.</p>
+            <div class="tags">
+              <a class="tag" href="#">PDF</a>
+              <a class="tag" href="#">Code</a>
+              <span class="tag">Graph ML</span>
+            </div>
+          </article>
+        </div>
+      </details>
+    </section>
+
+    <!-- Software / Projects -->
+    <section id="software">
+      <h2>Software</h2>
+      <div class="grid two">
+        <div class="card">
+          <h3 style="margin-top:0">SDTGNN</h3>
+          <p>Open-source framework for scalable temporal GNN training with streaming samplers, chunk caches, and custom CUDA kernels.</p>
+          <div class="tags">
+            <a class="tag" href="https://github.com/" target="_blank" rel="noopener">Repo</a>
+            <a class="tag" href="#">Docs</a>
+            <span class="tag">CUDA</span>
+            <span class="tag">DGL</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3 style="margin-top:0">NeutronStream (adaptation)</h3>
+          <p>High-throughput temporal neighbor sampler with chunk-based caches and multi-pass updates.</p>
+          <div class="tags">
+            <a class="tag" href="#">Repo</a>
+            <span class="tag">Sampler</span>
+            <span class="tag">GPU</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Teaching -->
+    <section id="teaching">
+      <h2>Teaching</h2>
+      <div class="grid">
+        <div class="card">
+          <ul>
+            <li><strong>MATH/STAT 131 – Calculus I</strong>, TA, UMass Amherst (Fall 2025)</li>
+            <li>Discussion sections, quiz logistics, Gradescope, and office hours (Mon/Wed 4–5 PM).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Service & Talks -->
+    <section id="service">
+      <h2>Service & Talks</h2>
+      <div class="grid two">
+        <div class="card">
+          <h3 style="margin-top:0">Service</h3>
+          <ul>
+            <li>Reviewer: NeurIPS (Workshop), VLDB (Artifact/Workshop)</li>
+            <li>Student mentor for ML systems reading group</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3 style="margin-top:0">Talks</h3>
+          <ul>
+            <li>"Scalable Memory Graphs for Temporal GNNs" — UMass Systems Lab, 2025</li>
+            <li>"From TGN to SDTGNN: Practical Tricks" — Reading Group, 2024</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <h2>Contact</h2>
+      <div class="card">
+        <p><strong>Email:</strong> your.name@umass.edu</p>
+        <p><strong>Office:</strong> LGRT 1435N, University of Massachusetts Amherst</p>
+        <p><strong>Social:</strong>
+          <a href="https://github.com/cseduashraful" target="_blank" rel="noopener">GitHub</a> ·
+          <a href="https://scholar.google.com/" target="_blank" rel="noopener">Google Scholar</a> ·
+          <a href="https://www.semanticscholar.org/" target="_blank" rel="noopener">Semantic Scholar</a> ·
+          <a href="https://orcid.org/" target="_blank" rel="noopener">ORCID</a>
+        </p>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <div>© <span id="year"></span> Md Ashraful Islam. Last updated <span id="lastUpdated"></span>.</div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- JSON-LD Schema (update fields!) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Md Ashraful Islam",
+    "jobTitle": "PhD Student",
+    "affiliation": {"@type": "Organization", "name": "University of Massachusetts Amherst"},
+    "email": "mailto:your.name@umass.edu",
+    "url": "https://cseduashraful.github.io/",
+    "sameAs": [
+      "https://github.com/cseduashraful",
+      "https://scholar.google.com/",
+      "https://www.linkedin.com/"
+    ]
+  }
+  </script>
+
+  <script>
+    // Theme toggle (persists to localStorage)
+    const themeToggle = document.getElementById('themeToggle');
+    const root = document.documentElement;
+    const THEME_KEY = 'pref-theme';
+    const applyTheme = (mode) => {
+      document.documentElement.dataset.theme = mode;
+      themeToggle.setAttribute('aria-pressed', mode === 'dark');
+    };
+    const saved = localStorage.getItem(THEME_KEY);
+    if (saved) applyTheme(saved);
+    themeToggle?.addEventListener('click', () => {
+      const next = (document.documentElement.dataset.theme === 'dark') ? 'light' : 'dark';
+      applyTheme(next);
+      localStorage.setItem(THEME_KEY, next);
+    });
+
+    // Mobile nav
+    const navToggle = document.getElementById('navToggle');
+    const mobileNav = document.getElementById('mobileNav');
+    navToggle?.addEventListener('click', () => {
+      const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+      navToggle.setAttribute('aria-expanded', String(!expanded));
+      mobileNav.style.display = expanded ? 'none' : 'block';
+      mobileNav.setAttribute('aria-hidden', String(expanded));
+    });
+
+    // Footer year & last updated
+    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('lastUpdated').textContent = new Date(document.lastModified).toLocaleDateString();
+  </script>
 </body>
 </html>
