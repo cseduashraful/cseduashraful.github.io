@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Md Ashraful Islam — PhD Candidate</title>
+  <meta name="description" content="Md Ashraful Islam — PhD student in Machine Learning Systems and Temporal Graph Neural Networks. Research, publications, software, teaching, and contact." />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="Md Ashraful Islam — PhD Candidate" />
+  <meta property="og:description" content="Research on ML Systems & Temporal Graph Neural Networks. Publications, software, teaching, and contact." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://cseduashraful.github.io/" />
+  <meta property="og:image" content="assets/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Favicon (replace with your own) -->
+  <link rel="icon" href="assets/favicon.ico" />
+
+  <!-- Fonts: system stack for speed/clarity -->
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #0f172a; /* slate-900 */
+      --muted: #475569; /* slate-600 */
+      --soft: #e2e8f0; /* slate-200 */
+      --card: #f8fafc; /* slate-50 */
+      --accent: #2563eb; /* blue-600 */
+      --accent-weak: #dbeafe; /* blue-100 */
+      --code-bg: #f1f5f9; /* slate-100 */
+      --shadow: 0 10px 20px rgba(2,6,23,.07), 0 2px 6px rgba(2,6,23,.06);
+      --radius: 16px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b1020; /* near-navy */
+        --text: #e5e7eb; /* slate-200 */
+        --muted: #94a3b8; /* slate-400 */
+        --soft: #1e293b; /* slate-800 */
+        --card: #0f172a; /* slate-900 */
+        --accent: #60a5fa; /* blue-400 */
+        --accent-weak: #0b2549; /* custom dark tint */
+        --code-bg: #0b1220;
+      }
+    }
+
+    /* Base */
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Helvetica Neue", "Noto Sans", Arial, "Apple Color Emoji",
+        "Segoe UI Emoji";
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .container { max-width: 1000px; padding: 0 20px; margin: 0 auto; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+    /* Header */
+    header {
+      position: sticky; top: 0; z-index: 40;
+      backdrop-filter: saturate(140%) blur(6px);
+      background: color-mix(in oklab, var(--bg) 86%, transparent);
+      border-bottom: 1px solid var(--soft);
+    }
+    .nav {
+      display: flex; align-items: center; gap: 16px; padding: 14px 0;
+    }
+    .brand { font-weight: 700; letter-spacing: .2px; }
+    nav a { color: var(--muted); text-decoration: none; padding: 6px 10px; border-radius: 10px; }
+    nav a:hover, nav a:focus { background: var(--accent-weak); color: var(--text); }
+    .nav-spacer { flex: 1; }
+    .btn {
+      display: inline-flex; align-items: center; gap: .5rem; border: 1px solid var(--soft);
+      background: var(--card); color: var(--text);
+      padding: 10px 14px; border-radius: 999px; text-decoration: none; box-shadow: var(--shadow);
+    }
+    .btn:hover { border-color: var(--accent); }
+
+    /* Hero */
+    .hero { padding: 48px 0 18px; }
+    .hero-card {
+      display: grid; grid-template-columns: 112px 1fr; gap: 24px;
+      background: var(--card); border: 1px solid var(--soft); border-radius: var(--radius);
+      padding: 24px; box-shadow: var(--shadow);
+    }
+    .avatar { width: 112px; height: 112px; border-radius: 14px; object-fit: cover; border: 1px solid var(--soft); }
+    .chip { display: inline-flex; align-items: center; gap: 8px; font-size: .9rem; color: var(--muted); background: var(--accent-weak); padding: 6px 10px; border-radius: 999px; }
+    .links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+
+    /* Sections */
+    section { padding: 26px 0; }
+    section h2 { margin: 0 0 10px; font-size: 1.5rem; letter-spacing: .2px; }
+    .card {
+      background: var(--card); border: 1px solid var(--soft); border-radius: var(--radius);
+      padding: 20px; box-shadow: var(--shadow);
+    }
+    .grid { display: grid; gap: 16px; }
+    @media (min-width: 800px) {
+      .grid.two { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* Lists */
+    ul.clean { list-style: none; padding: 0; margin: 0; }
+    ul.clean li { margin: 8px 0; }
+
+    /* Publication items */
+    .pub { margin: 0; }
+    .pub h3 { font-size: 1.05rem; margin: 0; }
+    .pub .meta { color: var(--muted); font-size: .95rem; margin: 2px 0 8px; }
+    .tags { display: inline-flex; flex-wrap: wrap; gap: 6px; }
+    .tag { display: inline-block; border: 1px solid var(--soft); padding: 4px 8px; border-radius: 999px; font-size: .82rem; color: var(--muted); text-decoration: none; }
+    .tag:hover { border-color: var(--accent); color: var(--text); }
+
+    /* Footer */
+    footer { padding: 32px 0 48px; color: var(--muted); font-size: .95rem; }
+
+    /* Small UX helpers */
+    .kbd { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; background: var(--code-bg); border: 1px solid var(--soft); padding: 2px 6px; border-radius: 8px; font-size: .85em; }
+    .pill { background: var(--accent-weak); border-radius: 999px; padding: 3px 8px; font-size: .8rem; }
+
+    /* Mobile tweaks */
+    @media (max-width: 640px) {
+      .hero-card { grid-template-columns: 1fr; }
+      .avatar { width: 88px; height: 88px; }
+      nav { display: none; }
+      .nav-toggle { display: inline-flex !important; }
+    }
+    .nav-toggle { display: none; border: 1px solid var(--soft); background: var(--card); padding: 8px 12px; border-radius: 10px; }
+    .mobile-nav { display: none; padding: 10px 0 14px; }
+    .mobile-nav a { display: inline-block; margin: 6px 6px 0 0; }
+  </style>
+</head>
+<body>
+  <a class="sr-only" href="#main">Skip to content</a>
+  <header>
+    <div class="container">
+      <div class="nav">
+        <div class="brand">Md Ashraful Islam</div>
+        <nav aria-label="Primary">
+          <a href="#about">About</a>
+          <a href="#research">Research</a>
+          <a href="#publications">Publications</a>
+          <a href="#software">Software</a>
+          <a href="#teaching">Teaching</a>
+          <a href="#service">Service</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <div class="nav-spacer"></div>
+        <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileNav">Menu</button>
+        <button class="btn" id="themeToggle" aria-pressed="false" title="Toggle theme">💡 Theme</button>
+      </div>
+      <div class="mobile-nav" id="mobileNav" aria-hidden="true">
+        <a href="#about">About</a>
+        <a href="#research">Research</a>
+        <a href="#publications">Publications</a>
+        <a href="#software">Software</a>
+        <a href="#teaching">Teaching</a>
+        <a href="#service">Service</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <!-- Hero / Intro -->
+    <section class="hero" id="about">
+      <div class="hero-card">
+        <img class="avatar" src="assets/profile.jpg" alt="Portrait of Md Ashraful Islam" />
+        <div>
+          <h1 style="margin: 0 0 4px">Md Ashraful Islam</h1>
+          <div class="chip">PhD Student · UMass Amherst · Machine Learning Systems</div>
+          <p style="margin: 12px 0 0">
+            I am a PhD student in the Mathematics & Statistics Department at
+            <a href="https://www.umass.edu/" target="_blank" rel="noopener">UMass Amherst</a>, advised by Prof. Marco Serafini.
+            My research focuses on <strong>Temporal Graph Neural Networks</strong>, memory-augmented models, and
+            efficient <strong>ML systems</strong> (C++/CUDA, PyTorch/DGL) for large-scale dynamic graphs.
+          </p>
+          <div class="links">
+            <a class="btn" href="assets/CV_Md_Ashraful_Islam.pdf">📄 CV</a>
+            <a class="btn" href="mailto:your.name@umass.edu">✉️ Email</a>
+            <a class="btn" href="https://scholar.google.com/" target="_blank" rel="noopener">🎓 Google Scholar</a>
+            <a class="btn" href="https://github.com/cseduashraful" target="_blank" rel="noopener">🐙 GitHub</a>
+            <a class="btn" href="https://www.linkedin.com/" target="_blank" rel="noopener">💼 LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick facts grid -->
+    <section class="grid two">
+      <div class="card">
+        <h2>Research Interests</h2>
+        <ul>
+          <li>Temporal & dynamic graph learning (TGN, APAN, TGAT, DyRep, JODIE)</li>
+          <li>Memory-augmented models & streaming samplers</li>
+          <li>High-performance training systems (CUDA kernels, PyBind11, DGL/PyG)</li>
+          <li>Scalable evaluation for link prediction & event forecasting</li>
+          <li>Privacy-preserving ML and system-level optimizations</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h2>News</h2>
+        <ul class="clean">
+          <li><span class="pill">2025</span> Drafting VLDB paper on SDTGNN and multi-version memory graphs.</li>
+          <li><span class="pill">2025</span> Interviewed with Kumo AI & Matthias Fey for research roles.</li>
+          <li><span class="pill">2024</span> Awarded Dean's Award & Prof. Dr. Lutfar Rahman Award.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Publications -->
+    <section id="publications">
+      <h2>Selected Publications & Preprints</h2>
+      <div class="grid">
+        <article class="card pub">
+          <h3>SDTGNN: Scalable Dependency-Aware Memory-based Temporal GNN Framework</h3>
+          <p class="meta">M. A. Islam, <em>et al.</em> (manuscript in preparation)</p>
+          <p>We introduce a multi-version memory update graph with chunk-based streaming to reduce staleness and improve GPU utilization during temporal training.</p>
+          <div class="tags">
+            <a class="tag" href="#">PDF</a>
+            <a class="tag" href="#">arXiv</a>
+            <a class="tag" href="#">Code</a>
+            <span class="tag">Temporal GNN</span>
+          </div>
+        </article>
+
+        <article class="card pub">
+          <h3>STFT‑GradTTS: A Robust Diffusion‑based Bangla TTS with iSTFT Decoder</h3>
+          <p class="meta">M. A. Islam, <em>et al.</em> (under review)</p>
+          <p>A diffusion-based TTS system for Bangla leveraging an iSTFT decoder with robustness to noisy inputs.</p>
+          <div class="tags">
+            <a class="tag" href="#">Preprint</a>
+            <a class="tag" href="#">Audio Samples</a>
+            <span class="tag">Speech</span>
+          </div>
+        </article>
+      </div>
+
+      <details style="margin-top: 12px;">
+        <summary>Show full list</summary>
+        <div class="grid" style="margin-top: 12px;">
+          <article class="card pub">
+            <h3>APANMemory for Dynamic Link Prediction</h3>
+            <p class="meta">Tech Report, 2025</p>
+            <p>Mailbox-efficient memory variant for APAN with configurable capacity and fast negative sampling.</p>
+            <div class="tags">
+              <a class="tag" href="#">PDF</a>
+              <a class="tag" href="#">Code</a>
+              <span class="tag">Graph ML</span>
+            </div>
+          </article>
+        </div>
+      </details>
+    </section>
+
+    <!-- Software / Projects -->
+    <section id="software">
+      <h2>Software</h2>
+      <div class="grid two">
+        <div class="card">
+          <h3 style="margin-top:0">SDTGNN</h3>
+          <p>Open-source framework for scalable temporal GNN training with streaming samplers, chunk caches, and custom CUDA kernels.</p>
+          <div class="tags">
+            <a class="tag" href="https://github.com/" target="_blank" rel="noopener">Repo</a>
+            <a class="tag" href="#">Docs</a>
+            <span class="tag">CUDA</span>
+            <span class="tag">DGL</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3 style="margin-top:0">NeutronStream (adaptation)</h3>
+          <p>High-throughput temporal neighbor sampler with chunk-based caches and multi-pass updates.</p>
+          <div class="tags">
+            <a class="tag" href="#">Repo</a>
+            <span class="tag">Sampler</span>
+            <span class="tag">GPU</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Teaching -->
+    <section id="teaching">
+      <h2>Teaching</h2>
+      <div class="grid">
+        <div class="card">
+          <ul>
+            <li><strong>MATH/STAT 131 – Calculus I</strong>, TA, UMass Amherst (Fall 2025)</li>
+            <li>Discussion sections, quiz logistics, Gradescope, and office hours (Mon/Wed 4–5 PM).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Service & Talks -->
+    <section id="service">
+      <h2>Service & Talks</h2>
+      <div class="grid two">
+        <div class="card">
+          <h3 style="margin-top:0">Service</h3>
+          <ul>
+            <li>Reviewer: NeurIPS (Workshop), VLDB (Artifact/Workshop)</li>
+            <li>Student mentor for ML systems reading group</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3 style="margin-top:0">Talks</h3>
+          <ul>
+            <li>"Scalable Memory Graphs for Temporal GNNs" — UMass Systems Lab, 2025</li>
+            <li>"From TGN to SDTGNN: Practical Tricks" — Reading Group, 2024</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <h2>Contact</h2>
+      <div class="card">
+        <p><strong>Email:</strong> your.name@umass.edu</p>
+        <p><strong>Office:</strong> LGRT 1435N, University of Massachusetts Amherst</p>
+        <p><strong>Social:</strong>
+          <a href="https://github.com/cseduashraful" target="_blank" rel="noopener">GitHub</a> ·
+          <a href="https://scholar.google.com/" target="_blank" rel="noopener">Google Scholar</a> ·
+          <a href="https://www.semanticscholar.org/" target="_blank" rel="noopener">Semantic Scholar</a> ·
+          <a href="https://orcid.org/" target="_blank" rel="noopener">ORCID</a>
+        </p>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <div>© <span id="year"></span> Md Ashraful Islam. Last updated <span id="lastUpdated"></span>.</div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- JSON-LD Schema (update fields!) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Md Ashraful Islam",
+    "jobTitle": "PhD Student",
+    "affiliation": {"@type": "Organization", "name": "University of Massachusetts Amherst"},
+    "email": "mailto:your.name@umass.edu",
+    "url": "https://cseduashraful.github.io/",
+    "sameAs": [
+      "https://github.com/cseduashraful",
+      "https://scholar.google.com/",
+      "https://www.linkedin.com/"
+    ]
+  }
+  </script>
+
+  <script>
+    // Theme toggle (persists to localStorage)
+    const themeToggle = document.getElementById('themeToggle');
+    const root = document.documentElement;
+    const THEME_KEY = 'pref-theme';
+    const applyTheme = (mode) => {
+      document.documentElement.dataset.theme = mode;
+      themeToggle.setAttribute('aria-pressed', mode === 'dark');
+    };
+    const saved = localStorage.getItem(THEME_KEY);
+    if (saved) applyTheme(saved);
+    themeToggle?.addEventListener('click', () => {
+      const next = (document.documentElement.dataset.theme === 'dark') ? 'light' : 'dark';
+      applyTheme(next);
+      localStorage.setItem(THEME_KEY, next);
+    });
+
+    // Mobile nav
+    const navToggle = document.getElementById('navToggle');
+    const mobileNav = document.getElementById('mobileNav');
+    navToggle?.addEventListener('click', () => {
+      const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+      navToggle.setAttribute('aria-expanded', String(!expanded));
+      mobileNav.style.display = expanded ? 'none' : 'block';
+      mobileNav.setAttribute('aria-hidden', String(expanded));
+    });
+
+    // Footer year & last updated
+    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('lastUpdated').textContent = new Date(document.lastModified).toLocaleDateString();
+  </script>
+</body>
+</html>
