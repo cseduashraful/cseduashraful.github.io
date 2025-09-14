@@ -189,26 +189,41 @@
       </div>
     </section>
 
-    <!-- Quick facts grid -->
-    <section class="grid two">
-      <div class="card">
-        <h2>Research Interests</h2>
-        <ul>
-          <li>Temporal Graph Learning</li>
-          <li>Relational Deep Learning</li>
-          <li>High-performance training systems (CUDA kernels, PyBind11, DGL/PyG)</li>
-          <li>Anomaly Detection using Provenance Graph</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h2>News</h2>
-        <ul class="clean">
-          <li><span class="pill">2025</span> Drafting VLDB paper on SDTGNN and multi-version memory graphs.</li>
-          <li><span class="pill">2025</span> Interviewed with Kumo AI & Matthias Fey for research roles.</li>
-          <li><span class="pill">2018</span> Awarded Dean's Award & Prof. Dr. Lutfar Rahman Award.</li>
-        </ul>
-      </div>
-    </section>
+   <section class="grid two">
+  <div class="card">
+    <h2>Research Interests</h2>
+    <ul>
+      <li>Temporal Graph Learning</li>
+      <li>Relational Deep Learning</li>
+      <li>High-performance training systems (CUDA kernels, PyBind11, DGL/PyG)</li>
+      <li>Anomaly Detection using Provenance Graph</li>
+      <li>Data Mining (Graph, Sequence)</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h2>News</h2>
+    <ul class="clean" id="newsList">
+      <li><span class="pill">2025</span> Drafting VLDB paper on SDTGNN and multi-version memory graphs.</li>
+      <li><span class="pill">2025</span> Interviewed with Kumo AI & Matthias Fey for research roles.</li>
+      <li><span class="pill">2024</span> Paper accepted at XYZ Conference.</li>
+      <li><span class="pill">2023</span> Teaching award from UMass Amherst.</li>
+      <li><span class="pill">2019</span> Internship at ABC Labs.</li>
+      <li><span class="pill">2018</span> Awarded Dean's Award & Prof. Dr. Lutfar Rahman Award.</li>
+    </ul>
+    <a class="btn" href="news.html">More News →</a>
+  </div>
+</section>
+
+<script>
+  // Limit visible news to 5 items
+  const newsList = document.getElementById('newsList');
+  if (newsList) {
+    const items = newsList.querySelectorAll('li');
+    items.forEach((li, idx) => {
+      if (idx >= 5) li.style.display = 'none'; // hide after 5th
+    });
+  }
+</script>
 
     <!-- Publications -->
     <section id="publications">

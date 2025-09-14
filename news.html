@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>All News — Md Ashraful Islam</title>
+  <meta name="description" content="All news and updates from Md Ashraful Islam." />
+  <link rel="icon" href="assets/favicon.ico" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Helvetica Neue", "Noto Sans", Arial, "Apple Color Emoji",
+        "Segoe UI Emoji";
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      margin: 0;
+    }
+    header {
+      position: sticky; top: 0; z-index: 40;
+      backdrop-filter: saturate(140%) blur(6px);
+      background: color-mix(in oklab, var(--bg) 86%, transparent);
+      border-bottom: 1px solid var(--soft);
+    }
+    .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+    h1 { margin-top: 1rem; font-size: 2rem; }
+    ul.clean { list-style: none; padding: 0; margin: 1rem 0; }
+    ul.clean li { margin: .75rem 0; padding: .75rem 1rem; background: var(--card); border: 1px solid var(--soft); border-radius: var(--radius); box-shadow: var(--shadow); }
+    .pill { background: var(--accent-weak); border-radius: 999px; padding: 3px 8px; font-size: .8rem; margin-right: 8px; }
+    footer { padding: 32px 0 48px; color: var(--muted); font-size: .95rem; text-align: center; }
+    a.btn-back {
+      display: inline-block; margin: 10px 0; padding: 10px 14px;
+      border: 1px solid var(--soft); background: var(--card); color: var(--text);
+      border-radius: 999px; text-decoration: none; box-shadow: var(--shadow);
+    }
+    a.btn-back:hover { border-color: var(--accent); }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <a class="btn-back" href="index.html">← Back to Home</a>
+      <h1>All News</h1>
+    </div>
+  </header>
+
+  <main class="container">
+    <ul class="clean">
+      <li><span class="pill">2025</span> Drafting VLDB paper on SDTGNN and multi-version memory graphs.</li>
+      <li><span class="pill">2025</span> Interviewed with Kumo AI & Matthias Fey for research roles.</li>
+      <li><span class="pill">2024</span> Paper accepted at XYZ Conference.</li>
+      <li><span class="pill">2023</span> Teaching award from UMass Amherst.</li>
+      <li><span class="pill">2019</span> Internship at ABC Labs.</li>
+      <li><span class="pill">2018</span> Awarded Dean's Award & Prof. Dr. Lutfar Rahman Award.</li>
+      <!-- add more news items as needed -->
+    </ul>
+  </main>
+
+  <footer>
+    <div class="container">© <span id="year"></span> Md Ashraful Islam.</div>
+  </footer>
+
+  <script>
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
