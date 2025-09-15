@@ -9,7 +9,12 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-
+<div id="header"></div>
+<script>
+  fetch('/header.html')
+    .then(resp => resp.text())
+    .then(html => document.getElementById('header').innerHTML = html);
+</script>
 
   <main class="container">
     <h1 style="margin-top:2rem">All News</h1>
