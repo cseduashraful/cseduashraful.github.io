@@ -25,7 +25,7 @@
 </head>
 <body>
   <a class="sr-only" href="#main">Skip to content</a>
-  <header>
+  <!-- <header>
     <div class="container">
       <div class="nav">
         <div class="brand">Md Ashraful Islam</div>
@@ -52,7 +52,13 @@
         <a href="#contact">Contact</a>
       </div>
     </div>
-  </header>
+  </header> -->
+  <div id="header"></div>
+<script>
+  fetch('/header.html')
+    .then(resp => resp.text())
+    .then(html => document.getElementById('header').innerHTML = html);
+</script>
 
   <main id="main" class="container">
     <!-- Hero / Intro -->

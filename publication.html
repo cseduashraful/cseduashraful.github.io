@@ -9,54 +9,58 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header>
-    <div class="container">
-      <div class="nav">
-        <div class="brand">Md Ashraful Islam</div>
-        <nav aria-label="Primary">
-          <a href="index.html#about">About</a>
-          <a href="index.html#research">Research</a>
-          <a href="index.html#publications">Publications</a>
-          <a href="index.html#software">Software</a>
-          <a href="index.html#teaching">Teaching</a>
-          <a href="index.html#service">Service</a>
-          <a href="index.html#contact">Contact</a>
-        </nav>
-        <div class="nav-spacer"></div>
-        <button class="btn" id="themeToggle" aria-pressed="false" title="Toggle theme">💡 Theme</button>
-      </div>
-    </div>
-  </header>
+<div id="header"></div>
+<script>
+  fetch('/header.html')
+    .then(resp => resp.text())
+    .then(html => document.getElementById('header').innerHTML = html);
+</script>
 
   <main class="container">
-    <h1 style="margin-top:2rem">All News</h1>
-    <ul class="clean">
-        <li>
-        <span class="pill">2024</span>
-        Paper accepted in <em>Applied Intelligence</em>.
-        <a href="https://link.springer.com/article/10.1007/s10489-024-05356-7" target="_blank" rel="noopener">Graph-based substructure pattern mining with edge-weight</a>
-      </li>
-      <li><span class="pill">2023</span> Started PhD at UMass Amherst on ML System</li>
-      <li>
-        <span class="pill">2023</span>
-        Paper accepted in <em>Applied Intelligence</em>.
-        <a href="https://link.springer.com/article/10.1007/s10489-022-03385-8" target="_blank" rel="noopener">UGMINE: utility-based graph mining</a>
-      </li>
-      <li><span class="pill">2022</span> Promoted to Assistant Professor (University of Dhaka, Dept. of CSE) </li>
-      <li>
-        <span class="pill">2022</span>
-        Paper accepted in <em>Applied Intelligence</em>.
-        <a href="https://link.springer.com/article/10.1007/s10489-021-02290-w" target="_blank" rel="noopener">Weighted frequent sequential pattern mining</a>
-      </li>
-      <li><span class="pill">2019</span> Started new position as Lecturer (University of Dhaka, Dept. of CSE) </li>
-      <li>
-        <span class="pill">2018</span>
-        Paper accepted in <em>PAKDD</em>.
-        <a href="https://link.springer.com/chapter/10.1007/978-3-319-93040-4_52" target="_blank" rel="noopener">WFSM-MaxPWS: An Efficient Approach for Mining Weighted Frequent Subgraphs from Edge-Weighted Graph Databases</a>
-      </li>
-      <li><span class="pill">2018</span> Awarded Dean's Award & Prof. Dr. Lutfar Rahman Award.</li>
-      <!-- add more news items as needed -->
-    </ul>
+        <!-- Publications -->
+    <section id="publications">
+      <h2>Selected Publications & Preprints</h2>
+      <div class="grid">
+        <article class="card pub">
+          <h3>SDTGNN: Scalable Dependency-Aware Memory-based Temporal GNN Framework</h3>
+          <p class="meta">M. A. Islam, <em>et al.</em> (manuscript in preparation)</p>
+          <p>We introduce a multi-version memory update graph with chunk-based streaming to reduce staleness and improve GPU utilization during temporal training.</p>
+          <div class="tags">
+            <a class="tag" href="#">PDF</a>
+            <a class="tag" href="#">arXiv</a>
+            <a class="tag" href="#">Code</a>
+            <span class="tag">Temporal GNN</span>
+          </div>
+        </article>
+
+        <article class="card pub">
+          <h3>STFT‑GradTTS: A Robust Diffusion‑based Bangla TTS with iSTFT Decoder</h3>
+          <p class="meta">M. A. Islam, <em>et al.</em> (under review)</p>
+          <p>A diffusion-based TTS system for Bangla leveraging an iSTFT decoder with robustness to noisy inputs.</p>
+          <div class="tags">
+            <a class="tag" href="#">Preprint</a>
+            <a class="tag" href="#">Audio Samples</a>
+            <span class="tag">Speech</span>
+          </div>
+        </article>
+      </div>
+
+      <details style="margin-top: 12px;">
+        <summary>Show full list</summary>
+        <div class="grid" style="margin-top: 12px;">
+          <article class="card pub">
+            <h3>APANMemory for Dynamic Link Prediction</h3>
+            <p class="meta">Tech Report, 2025</p>
+            <p>Mailbox-efficient memory variant for APAN with configurable capacity and fast negative sampling.</p>
+            <div class="tags">
+              <a class="tag" href="#">PDF</a>
+              <a class="tag" href="#">Code</a>
+              <span class="tag">Graph ML</span>
+            </div>
+          </article>
+        </div>
+      </details>
+    </section>
   </main>
 
   <footer>
