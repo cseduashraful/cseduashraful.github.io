@@ -3,146 +3,166 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PRISM — Md Ashraful Islam</title>
-  <meta name="description" content="Project page for PRISM, a training system for memory-augmented temporal graph learning through staleness avoidance." />
+  <title>Temporal Graph Learning Systems — Md Ashraful Islam</title>
+  <meta name="description" content="Research on scalable temporal graph neural network training systems — PRISM, distributed training, and beyond." />
   <link rel="icon" href="assets/favicon.ico" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div id="header"></div>
-  <script>
-    fetch('/header.html')
-      .then(resp => resp.text())
-      .then(html => document.getElementById('header').innerHTML = html);
-  </script>
 
-  <main class="container">
-    <section class="project-hero">
+<header>
+  <div class="container">
+    <div class="nav">
+      <a class="brand" href="index.html">Md Ashraful Islam</a>
+      <nav aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="publication.html">Publications</a>
+        <a href="news.html">News</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+      <div class="nav-spacer"></div>
+      <button class="btn" id="themeToggle" aria-pressed="false" title="Toggle theme">Theme</button>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+
+  <section style="padding-top:2rem">
+    <div class="card">
+      <div style="margin-bottom:6px;font-size:.85rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em">Ongoing Project &middot; 2023 &ndash; Present</div>
+      <h1 style="margin:0 0 10px">Temporal Graph Learning Systems</h1>
+      <p style="margin:0;font-size:1.05rem;color:var(--muted)">
+        Building scalable, staleness-free training infrastructure for memory-based temporal graph neural networks &mdash; from custom CUDA kernels to distributed multi-node systems.
+      </p>
+      <div class="links" style="margin-top:16px">
+        <a class="btn" href="https://github.com/cseduashraful/PRISM" target="_blank" rel="noopener">Code</a>
+        <a class="btn" href="pdf/PRISM.pdf" target="_blank" rel="noopener">VLDB&rsquo;26 Paper</a>
+        <a class="btn" href="projects.html">&larr; All Projects</a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>The Problem</h2>
+    <div class="card">
+      <p>
+        Temporal graph neural networks (TGNNs) process continuously evolving graphs where nodes maintain a <strong>memory state</strong> that accumulates information from past interactions. The challenge: when events in the same training batch depend on each other, standard parallel execution reads <em>stale</em> memory &mdash; memory that has not yet been updated by earlier events in the same batch. This staleness grows with batch size and degrades model accuracy, creating a fundamental tension between training throughput and model correctness.
+      </p>
+      <p style="margin-bottom:0">
+        Existing systems either process events fully sequentially (correct but slow) or ignore intra-batch dependencies entirely (fast but inaccurate). Neither scales. The goal of this project is to build systems that are <strong>both</strong> &mdash; staleness-free and GPU-efficient.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <h2>What We Built: PRISM</h2>
+    <div class="grid two">
       <div class="card">
-        <div class="eyebrow">Project Page</div>
-        <h1>PRISM: A Training System to Unlock the Potential of Temporal Graph Learning Through Staleness Avoidance</h1>
-        <p class="lede">
-          PRISM is a training system for memory-augmented temporal graph neural networks that avoids memory staleness while still preserving strong GPU parallelism. It introduces multi-versioned memory refinement, a lightweight memory computation graph, and a high-throughput temporal sampling pipeline for dynamic graphs.
-        </p>
-        <p class="meta">Md Ashraful Islam, Hojae Son, Suhaas Kiran, and Marco Serafini · University of Massachusetts Amherst · PVLDB</p>
-        <div class="project-actions">
-          <a class="btn" href="https://dl.acm.org/doi/abs/10.14778/3819518.3819544" target="_blank" rel="noopener">Read Paper</a>
-          <a class="btn" href="https://github.com/cseduashraful/PRISM" target="_blank" rel="noopener">Source Code</a>
-          <a class="btn" href="index.html#software">Back to Projects</a>
+        <h3 style="margin-top:0">Memory Computation Graph (MCG)</h3>
+        <p>We model intra-batch memory dependencies as a directed graph &mdash; the MCG &mdash; where nodes are events and edges encode which memory reads depend on which prior writes. Custom CUDA kernels traverse this graph to propagate fresh memory states, resolving staleness without serializing the whole batch.</p>
+      </div>
+      <div class="card">
+        <h3 style="margin-top:0">Lazy Freshness</h3>
+        <p>Rather than enforcing strict sequential ordering, PRISM uses <em>lazy freshness</em>: each event is guaranteed a memory state that reflects all events it causally depends on, but independent events still execute in parallel. This unlocks significant GPU parallelism that strict staleness-free methods forfeit.</p>
+      </div>
+      <div class="card">
+        <h3 style="margin-top:0">GRN-Stream Sampler</h3>
+        <p>A streaming temporal neighbor sampler that decouples data ingestion from training. Graph edges arrive continuously; the sampler maintains a chunk-based index (TCI) for efficient neighbor lookups without rebuilding the full index each step.</p>
+      </div>
+      <div class="card">
+        <h3 style="margin-top:0">Model-Agnostic Design</h3>
+        <p>PRISM is a training system wrapper, not a new model. TGN, TNCN, APAN, and other memory-based TGNNs plug in unchanged &mdash; PRISM handles all memory versioning and dependency resolution transparently at the system level.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Results</h2>
+    <div class="card">
+      <div class="grid two" style="gap:20px">
+        <div>
+          <p style="margin:0 0 4px"><strong>Accuracy</strong></p>
+          <p style="margin:0;color:var(--muted)">Up to <strong>28% higher</strong> accuracy versus stale-memory baselines across five temporal graph benchmarks at the same batch sizes.</p>
+        </div>
+        <div>
+          <p style="margin:0 0 4px"><strong>Leaderboard</strong></p>
+          <p style="margin:0;color:var(--muted)">Results up to <strong>9.2% above</strong> the TGB leaderboard, achieved by applying PRISM to existing unmodified models.</p>
+        </div>
+        <div>
+          <p style="margin:0 0 4px"><strong>Throughput</strong></p>
+          <p style="margin:0;color:var(--muted)">Training time remains competitive with parallel stale-memory baselines and is often lower than strictly sequential staleness-free execution.</p>
+        </div>
+        <div>
+          <p style="margin:0 0 4px"><strong>Scalability</strong></p>
+          <p style="margin:0;color:var(--muted)">Accuracy improvements grow with batch size &mdash; the regime where prior systems degrade most. PRISM gets <em>more</em> useful as scale increases.</p>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="stats-grid">
-        <div class="stat-card">
-          <strong>Core idea</strong>
-          <span>Replace stale in-batch memory reads with temporally consistent multi-versioned memory states.</span>
-        </div>
-        <div class="stat-card">
-          <strong>Main benefit</strong>
-          <span>Retain the accuracy of staleness-free execution without giving up the efficiency of parallel GPU training.</span>
-        </div>
-        <div class="stat-card">
-          <strong>Reported impact</strong>
-          <span>Up to 28% higher accuracy on existing M-TGNN models and up to 9.2% above the TGB leaderboard reported in the paper.</span>
-        </div>
-      </div>
-    </section>
+  <section>
+    <h2>What&rsquo;s Next</h2>
+    <div class="card">
+      <ul style="margin:0">
+        <li><strong>Multi-node distributed training</strong> &mdash; extending the MCG and lazy freshness framework across multiple GPUs and machines with NCCL-based memory synchronization.</li>
+        <li><strong>Relational temporal graphs</strong> &mdash; applying this infrastructure to heterogeneous relational databases for predictive queries (see <a href="projects.html#predictive-query">Predictive Query project</a>).</li>
+        <li><strong>Provenance graph learning</strong> &mdash; reusing PRISM&rsquo;s dynamic graph engine for OS-level intrusion detection over audit log streams (see <a href="projects.html#intrusion-detection">Intrusion Detection project</a>).</li>
+      </ul>
+    </div>
+  </section>
 
-    <section>
-      <h2>Overview</h2>
+  <section>
+    <h2>Paper &amp; Resources</h2>
+    <div class="grid two">
       <div class="card">
-        <p>
-          Memory-augmented temporal graph neural networks are powerful for dynamic graphs, but their training becomes difficult when events inside the same batch depend on one another. Existing high-throughput systems commonly ignore those intra-batch dependencies, which creates stale memory and harms accuracy as batch size grows.
-        </p>
-        <p>
-          PRISM addresses this by computing multiple fresh memory versions inside a batch so each event can consume a temporally consistent state. The result is a training pipeline that preserves model semantics more faithfully while still scaling well on GPUs.
-        </p>
+        <h3 style="margin-top:0">VLDB&rsquo;26 Publication</h3>
+        <p style="margin:0 0 12px;color:var(--muted)">Md Ashraful Islam, Hojae Son, Suhaas Kiran Doddagaddavalli Gangadharaiah, Marco Serafini<br><em>Proceedings of the VLDB Endowment, 2026</em></p>
+        <div class="tags">
+          <a class="tag" href="pdf/PRISM.pdf" target="_blank" rel="noopener">PDF</a>
+          <a class="tag" href="https://dl.acm.org/doi/abs/10.14778/3819518.3819544" target="_blank" rel="noopener">ACM DL</a>
+          <a class="tag" href="https://github.com/cseduashraful/PRISM" target="_blank" rel="noopener">Code</a>
+        </div>
       </div>
-    </section>
-
-    <section>
-      <h2>Key Contributions</h2>
       <div class="card">
-        <ul class="keypoints">
-          <li>Introduces <strong>lazy freshness</strong>, a relaxed form of staleness-freedom that enables more parallelism than stricter sequential approaches.</li>
-          <li>Designs a <strong>multi-versioned memory refinement</strong> algorithm over a lightweight memory computation graph to eliminate stale states within a batch.</li>
-          <li>Builds <strong>PRISM</strong>, a general training system that supports existing memory-based TGNN models such as TGN, TNCN, and APAN.</li>
-          <li>Includes <strong>GRN-Stream</strong> and the <strong>Temporal Chunk Index (TCI)</strong> for efficient temporal neighbor sampling and incremental updates on dynamic graphs.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section>
-      <h2>Highlights From The Paper</h2>
-      <div class="grid two">
-        <article class="card">
-          <h3 style="margin-top:0">Why PRISM matters</h3>
-          <p>
-            Standard stale-memory training improves throughput by processing events together, but it can violate temporal consistency. PRISM shows that accuracy losses at large batch sizes are not inevitable; they are often a systems problem caused by stale memory.
-          </p>
-        </article>
-        <article class="card">
-          <h3 style="margin-top:0">What the evaluation shows</h3>
-          <p>
-            Across five temporal-graph benchmarks and three unmodified models, PRISM is reported to improve accuracy while keeping training time competitive with parallel stale-memory baselines and often lower than stricter staleness-free methods.
-          </p>
-        </article>
-      </div>
-    </section>
-
-    <section>
-      <h2>Abstract</h2>
-      <div class="card">
-        <p>
-          Training memory-augmented temporal graph neural networks efficiently and accurately remains challenging because memory staleness appears when temporally dependent events are processed together in the same batch. PRISM avoids that staleness by using multi-versioned memory vectors, allowing each event to read a temporally consistent memory state. The system formalizes lazy freshness, implements a parallel memory refinement algorithm, and combines it with efficient temporal sampling support for dynamic graphs. The paper reports strong accuracy gains while maintaining competitive training efficiency.
-        </p>
-      </div>
-    </section>
-
-    <section>
-      <h2>Resources</h2>
-      <div class="grid two">
-        <article class="card">
-          <h3 style="margin-top:0">Links</h3>
-          <div class="tags">
-            <a class="tag" href="pdf/PRISM.pdf" target="_blank" rel="noopener">Paper PDF</a>
-            <a class="tag" href="https://github.com/cseduashraful/PRISM" target="_blank" rel="noopener">GitHub Repository</a>
-            <a class="tag" href="news.html">News</a>
-          </div>
-        </article>
-        <article class="card">
-          <h3 style="margin-top:0">Citation</h3>
-          <div class="citation-block">@article{islam2026prism,
-  title   = {PRISM: A Training System to Unlock the Potential of Temporal Graph Learning Through Staleness Avoidance},
-  author  = {Islam, Md Ashraful and Son, Hojae and Kiran, Suhaas and Serafini, Marco},
-  journal = {Proceedings of the VLDB Endowment},
+        <h3 style="margin-top:0">Citation</h3>
+        <pre style="margin:0;font-size:.78rem;overflow-x:auto;background:var(--code-bg);padding:12px;border-radius:10px;line-height:1.5">@article{islam2026prism,
+  title   = {PRISM: A Training System to Unlock
+             the Potential of Temporal Graph
+             Learning Through Staleness Avoidance},
+  author  = {Islam, Md Ashraful and Son, Hojae
+             and Kiran, Suhaas and Serafini, Marco},
+  journal = {Proc. VLDB Endow.},
   year    = {2026}
-}</div>
-        </article>
+}</pre>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
 
-  <footer>
-    <div class="container">© <span id="year"></span> Md Ashraful Islam.</div>
-  </footer>
+</main>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+<footer>
+  <div class="container">
+    <div>&copy; <span id="year"></span> Md Ashraful Islam.</div>
+  </div>
+</footer>
 
-    const themeToggle = document.getElementById('themeToggle');
-    const THEME_KEY = 'pref-theme';
-    const applyTheme = (mode) => {
-      document.documentElement.dataset.theme = mode;
-      themeToggle?.setAttribute('aria-pressed', mode === 'dark');
-    };
-    const saved = localStorage.getItem(THEME_KEY);
-    if (saved) applyTheme(saved);
-    themeToggle?.addEventListener('click', () => {
-      const next = (document.documentElement.dataset.theme === 'dark') ? 'light' : 'dark';
-      applyTheme(next);
-      localStorage.setItem(THEME_KEY, next);
-    });
-  </script>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const themeToggle = document.getElementById('themeToggle');
+  const THEME_KEY = 'pref-theme';
+  const applyTheme = (mode) => {
+    document.documentElement.dataset.theme = mode;
+    themeToggle?.setAttribute('aria-pressed', mode === 'dark');
+  };
+  const saved = localStorage.getItem(THEME_KEY);
+  if (saved) applyTheme(saved);
+  themeToggle?.addEventListener('click', () => {
+    const next = (document.documentElement.dataset.theme === 'dark') ? 'light' : 'dark';
+    applyTheme(next); localStorage.setItem(THEME_KEY, next);
+  });
+</script>
+
 </body>
 </html>

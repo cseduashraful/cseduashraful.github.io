@@ -3,22 +3,40 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>All News — Md Ashraful Islam</title>
+  <title>News — Md Ashraful Islam</title>
   <meta name="description" content="All news and updates from Md Ashraful Islam." />
   <link rel="icon" href="assets/favicon.ico" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-<div id="header"></div>
-<script>
-  fetch('/header.html')
-    .then(resp => resp.text())
-    .then(html => document.getElementById('header').innerHTML = html);
-</script>
+<header>
+  <div class="container">
+    <div class="nav">
+      <a class="brand" href="index.html">Md Ashraful Islam</a>
+            <nav aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="publication.html">Publications</a>
+        <a href="news.html">News</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+      <div class="nav-spacer"></div>
+      <button class="btn" id="themeToggle" aria-pressed="false" title="Toggle theme">💡 Theme</button>
+    </div>
+  </div>
+</header>
 
   <main class="container">
     <h1 style="margin-top:2rem">All News</h1>
     <ul class="clean">
+      <li>
+        <span class="pill">2026</span>
+        Research Internship at <em>Tursio Inc.</em> (Bellevue, WA) &mdash; built a context-graph enrichment pipeline for an agentic NL-to-SQL system using CUDA and PyTorch DDP.
+      </li>
+      <li>
+        <span class="pill">2026</span>
+        Preprint on arXiv: <a href="https://arxiv.org/abs/2607.23815" target="_blank" rel="noopener">Kalypso: Relational LLM Serving</a> &mdash; co-authored with Hojae Son and Marco Serafini.
+      </li>
       <li>
         <span class="pill">2026</span>
         Paper accepted in <em>VLDB</em>.
@@ -46,7 +64,7 @@
         Paper accepted in <em>Applied Intelligence</em>.
         <a href="https://link.springer.com/article/10.1007/s10489-021-02290-w" target="_blank" rel="noopener">Weighted frequent sequential pattern mining</a>
       </li>
-      <li><span class="pill">2019</span> Started new position as Lecturer (University of Dhaka, Dept. of CSE) </li>
+      <li><span class="pill">2019</span> Started new position as Lecturer (East West University, Dept. of CSE, Dhaka) </li>
       <li>
         <span class="pill">2018</span>
         Paper accepted in <em>PAKDD</em>.

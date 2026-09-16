@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Projects — Md Ashraful Islam</title>
+  <meta name="description" content="Research projects by Md Ashraful Islam — ML Systems, Temporal GNN, Agentic AI, and more." />
+  <link rel="icon" href="assets/favicon.ico" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="nav">
+      <a class="brand" href="index.html">Md Ashraful Islam</a>
+      <nav aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="publication.html">Publications</a>
+        <a href="news.html">News</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+      <div class="nav-spacer"></div>
+      <button class="btn" id="themeToggle" aria-pressed="false" title="Toggle theme">💡 Theme</button>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <h1 style="margin-top:2rem">Research Projects</h1>
+
+  <!-- PRISM -->
+  <section id="prism">
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px">
+        <h2 style="margin:0">PRISM: Scalable M-TGNN Training System</h2>
+        <span class="pill">2023 – Present</span>
+      </div>
+      <p style="margin:8px 0 4px"><em>Published · VLDB Endowment 2026 · ML Systems, CUDA, Distributed Training, Graph Learning</em></p>
+      <p>PRISM introduces a <strong>memory computation graph (MCG)</strong> built with custom CUDA kernels, where diffusion-based propagation eliminates staleness in memory-based temporal GNN training at large batch sizes. Extending to multi-node distributed training using PyTorch DDP and NCCL.</p>
+      <ul>
+        <li>Custom CUDA kernels for high-throughput memory propagation</li>
+        <li>Chunk-based streaming sampler to decouple data ingestion from training</li>
+        <li>Eliminates staleness that degrades model accuracy at scale</li>
+        <li>Multi-node distributed training extension in progress</li>
+      </ul>
+      <div class="tags" style="margin-top:12px">
+        <a class="tag" href="prism.html">Project Page</a>
+        <a class="tag" href="pdf/PRISM.pdf" target="_blank" rel="noopener">PDF</a>
+        <a class="tag" href="https://github.com/cseduashraful/PRISM" target="_blank" rel="noopener">Code</a>
+        <span class="tag">Temporal GNN</span>
+        <span class="tag">CUDA</span>
+        <span class="tag">ML Systems</span>
+        <span class="tag">PyTorch DDP</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Predictive Query over Relational Databases -->
+  <section id="predictive-query">
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px">
+        <h2 style="margin:0">Predictive Query over Relational Databases</h2>
+        <span class="pill">2025 – Present</span>
+      </div>
+      <p style="margin:8px 0 4px"><em>Ongoing · Agentic AI, Relational Deep Learning, RL, LLM</em></p>
+      <p>A system for answering predictive queries (churn, fraud, conversion) over relational databases without manual feature engineering, combining temporal graph learning with agentic pipelines.</p>
+      <ul>
+        <li><strong>Supervised path:</strong> Heterogeneous M-TGNN encoder over temporal relational graphs for downstream prediction</li>
+        <li><strong>Agentic path:</strong> 5-stage pipeline — DB profiling → context graph → task policy → guided row retrieval → SLM head — replacing dedicated feature machines with policy-guided retrieval</li>
+      </ul>
+      <div class="tags" style="margin-top:12px">
+        <span class="tag">Agentic AI</span>
+        <span class="tag">Relational Deep Learning</span>
+        <span class="tag">RL</span>
+        <span class="tag">LLM</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kalypso -->
+  <section id="kalypso">
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px">
+        <h2 style="margin:0">Kalypso: Relational LLM Serving</h2>
+        <span class="pill">2026</span>
+      </div>
+      <p style="margin:8px 0 4px"><em>arXiv:2607.23815 · LLM Serving, Database Systems, Inference Optimization</em></p>
+      <p>Kalypso is an LLM serving system designed for semantic query processing over relational data. It uses <strong>structured context batching</strong> and <strong>KV-cache reuse</strong> across queries that share relational context, significantly reducing redundant computation and improving throughput.</p>
+      <ul>
+        <li>Structured context batching groups queries sharing table/schema context</li>
+        <li>KV-cache reuse eliminates redundant prefill across related queries</li>
+        <li>Co-designed for semantic NL-to-SQL and relational question answering</li>
+      </ul>
+      <div class="tags" style="margin-top:12px">
+        <a class="tag" href="https://arxiv.org/abs/2607.23815" target="_blank" rel="noopener">arXiv</a>
+        <span class="tag">LLM Serving</span>
+        <span class="tag">Database Systems</span>
+        <span class="tag">Inference Optimization</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Intrusion Detection -->
+  <section id="intrusion-detection">
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px">
+        <h2 style="margin:0">Intrusion Detection via Provenance Graph Learning</h2>
+        <span class="pill">2025 – Present</span>
+      </div>
+      <p style="margin:8px 0 4px"><em>Ongoing · Security, Graph Neural Networks, Anomaly Detection</em></p>
+      <p>Applies dynamic graph learning over OS-level provenance graphs — capturing processes, files, and sockets — to detect stealthy multi-stage intrusions using temporal dependency modeling.</p>
+      <ul>
+        <li>Models OS audit logs as a dynamic provenance graph with temporal edges</li>
+        <li>Detects advanced persistent threats (APTs) via anomalous dependency patterns</li>
+        <li>Leverages memory-based temporal GNN techniques developed in PRISM</li>
+      </ul>
+      <div class="tags" style="margin-top:12px">
+        <span class="tag">Security</span>
+        <span class="tag">Graph Neural Networks</span>
+        <span class="tag">Anomaly Detection</span>
+        <span class="tag">Temporal GNN</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Structured Data Mining -->
+  <section id="data-mining">
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px">
+        <h2 style="margin:0">Structured Data Mining: Weighted &amp; Utility-Based Pattern Mining</h2>
+        <span class="pill">2017 – 2024</span>
+      </div>
+      <p style="margin:8px 0 4px"><em>Completed · Graph Mining, Sequential Pattern Mining</em></p>
+      <p>A line of work developing efficient algorithms for mining weighted and utility-based patterns from graph and sequence databases, published across PAKDD, ICDM, and Applied Intelligence.</p>
+      <ul>
+        <li><strong>Graph Pattern Mining:</strong> Weighted frequent subgraph mining algorithms (WFSM-MaxPWS, WeFreS, MaxPWSCan, UGMINE) with pruning strategies outperforming baselines in runtime and scalability</li>
+        <li><strong>Sequential Pattern Mining:</strong> Weighted frequent sequential pattern mining (WFSPM) with support-weight formulations capturing item significance beyond frequency</li>
+      </ul>
+      <div class="tags" style="margin-top:12px">
+        <a class="tag" href="https://github.com/cseduashraful/MaxPWSCan" target="_blank" rel="noopener">MaxPWSCan</a>
+        <a class="tag" href="https://github.com/cseduashraful/WFSPM-Final" target="_blank" rel="noopener">WFSPM</a>
+        <a class="tag" href="https://link.springer.com/article/10.1007/s10489-024-05356-7" target="_blank" rel="noopener">Paper (2024)</a>
+        <a class="tag" href="https://link.springer.com/article/10.1007/s10489-021-02290-w" target="_blank" rel="noopener">Paper (2022)</a>
+        <span class="tag">Graph Mining</span>
+        <span class="tag">Python</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div>© <span id="year"></span> Md Ashraful Islam.</div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const themeToggle = document.getElementById('themeToggle');
+  const THEME_KEY = 'pref-theme';
+  const applyTheme = (mode) => {
+    document.documentElement.dataset.theme = mode;
+    themeToggle.setAttribute('aria-pressed', mode === 'dark');
+  };
+  const saved = localStorage.getItem(THEME_KEY);
+  if (saved) applyTheme(saved);
+  themeToggle?.addEventListener('click', () => {
+    const next = (document.documentElement.dataset.theme === 'dark') ? 'light' : 'dark';
+    applyTheme(next);
+    localStorage.setItem(THEME_KEY, next);
+  });
+</script>
+
+</body>
+</html>

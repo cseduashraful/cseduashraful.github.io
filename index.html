@@ -53,12 +53,22 @@
       </div>
     </div>
   </header> -->
-  <div id="header"></div>
-<script>
-  fetch('/header.html')
-    .then(resp => resp.text())
-    .then(html => document.getElementById('header').innerHTML = html);
-</script>
+<header>
+  <div class="container">
+    <div class="nav">
+      <a class="brand" href="index.html">Md Ashraful Islam</a>
+      <nav aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="publication.html">Publications</a>
+        <a href="news.html">News</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+      <div class="nav-spacer"></div>
+      <button class="btn" id="themeToggle" aria-pressed="false" title="Toggle theme">💡 Theme</button>
+    </div>
+  </div>
+</header>
 
   <main id="main" class="container">
     <!-- Hero / Intro -->
@@ -67,12 +77,14 @@
         <img class="avatar" src="images/profile.jpg" alt="Portrait of Md Ashraful Islam" />
         <div>
           <h1 style="margin: 0 0 4px">Md Ashraful Islam</h1>
-          <div class="chip">PhD Student · UMass Amherst · Machine Learning Systems</div>
+          <div class="chip">PhD Candidate · UMass Amherst · ML &amp; Data Systems</div>
           <p style="margin: 12px 0 0">
-            I am a PhD student in the Computer Science Department at
+            I am a PhD candidate in the Computer Science Department at
             <a href="https://www.umass.edu/" target="_blank" rel="noopener">UMass Amherst</a>, advised by Prof. Marco Serafini.
-            My research focuses on <strong>Temporal Graph Neural Networks</strong>, <strong>Relational Deep Learning</strong>, and
-            efficient <strong>ML systems</strong> (C++/CUDA, PyTorch, PyG/DGL) for large-scale dynamic graphs.
+            My research focuses on <strong>ML &amp; Data Systems</strong>, <strong>Agentic AI</strong>, and
+            <strong>Relational Deep Learning</strong>. I build high-performance systems with CUDA, PyTorch DDP, and NCCL
+            for large-scale temporal and relational graph learning (VLDB&#8217;26). Co-author of
+            <a href="https://arxiv.org/abs/2607.23815" target="_blank" rel="noopener">Kalypso</a> (relational LLM serving, arXiv&#8217;26).
           </p>
           <div class="links">
             <a class="btn" href="pdf/cv_md_ashraful_islam.pdf">📄 CV</a>
@@ -85,20 +97,18 @@
       </div>
     </section>
 
-   <section class="grid two">
-  <div class="card">
-    <h2>Research Interests</h2>
-    <ul>
-      <li>Temporal Graph Learning</li>
-      <li>Relational Deep Learning</li>
-      <li>High-performance training systems (CUDA kernels, PyBind11, DGL/PyG)</li>
-      <li>Anomaly Detection using Provenance Graph</li>
-      <li>Data Mining (Graph, Sequence)</li>
-    </ul>
-  </div>
+   <section>
   <div class="card">
     <h2>News</h2>
     <ul class="clean" id="newsList">
+      <li>
+        <span class="pill">2026</span>
+        Research Internship at <em>Tursio Inc.</em> (Bellevue, WA) &mdash; built a context-graph enrichment pipeline for an agentic NL-to-SQL system.
+      </li>
+      <li>
+        <span class="pill">2026</span>
+        Preprint on arXiv: <a href="https://arxiv.org/abs/2607.23815" target="_blank" rel="noopener">Kalypso: Relational LLM Serving</a> &mdash; co-authored with Hojae Son and Marco Serafini.
+      </li>
       <li>
         <span class="pill">2026</span>
         Paper accepted in <em>VLDB</em>.
@@ -150,51 +160,52 @@
 </script>
 
     <!-- Publications -->
-    <!-- <section id="publications">
-      <h2>Selected Publications & Preprints</h2>
+    <section id="publications">
+      <h2>Publications</h2>
       <div class="grid">
         <article class="card pub">
-          <h3>SDTGNN: Scalable Dependency-Aware Memory-based Temporal GNN Framework</h3>
-          <p class="meta">M. A. Islam, <em>et al.</em> (manuscript in preparation)</p>
-          <p>We introduce a multi-version memory update graph with chunk-based streaming to reduce staleness and improve GPU utilization during temporal training.</p>
+          <h3>PRISM: A Training System for Temporal Graph Learning Through Staleness Avoidance</h3>
+          <p class="meta">Md Ashraful Islam, Hojae Son, Suhaas Kiran Doddagaddavalli Gangadharaiah, Marco Serafini &middot; <em>VLDB Endowment</em>, 2026</p>
+          <p>Custom CUDA kernels build a memory computation graph (MCG); diffusion-based propagation eliminates staleness in M-TGNN training at large batch sizes.</p>
           <div class="tags">
-            <a class="tag" href="#">PDF</a>
-            <a class="tag" href="#">arXiv</a>
-            <a class="tag" href="#">Code</a>
+            <a class="tag" href="prism.html">Project Page</a>
+            <a class="tag" href="pdf/PRISM.pdf" target="_blank">PDF</a>
+            <a class="tag" href="https://github.com/cseduashraful/PRISM" target="_blank" rel="noopener">Code</a>
             <span class="tag">Temporal GNN</span>
+            <span class="tag">CUDA</span>
           </div>
         </article>
-
         <article class="card pub">
-          <h3>STFT‑GradTTS: A Robust Diffusion‑based Bangla TTS with iSTFT Decoder</h3>
-          <p class="meta">M. A. Islam, <em>et al.</em> (under review)</p>
-          <p>A diffusion-based TTS system for Bangla leveraging an iSTFT decoder with robustness to noisy inputs.</p>
+          <h3>Kalypso: Relational LLM Serving</h3>
+          <p class="meta">Hojae Son, Md Ashraful Islam, Huy Gia Cao, Hui Guan, Marco Serafini &middot; <em>arXiv:2607.23815</em>, 2026</p>
+          <p>LLM serving system for semantic query processing: structured context batching and KV-cache reuse across queries sharing relational context.</p>
           <div class="tags">
-            <a class="tag" href="#">Preprint</a>
-            <a class="tag" href="#">Audio Samples</a>
-            <span class="tag">Speech</span>
+            <a class="tag" href="https://arxiv.org/abs/2607.23815" target="_blank" rel="noopener">arXiv</a>
+            <span class="tag">LLM Serving</span>
+            <span class="tag">Database Systems</span>
+          </div>
+        </article>
+        <article class="card pub">
+          <h3>STFT-GradTTS: A Robust, Diffusion-based Speech Synthesis System with iSTFT Decoder for Bangla</h3>
+          <p class="meta">Mushahid Intesum et al. &middot; <em>International Journal of Speech Technology</em>, 2025</p>
+          <div class="tags">
+            <a class="tag" href="https://link.springer.com/article/10.1007/s10772-025-10241-w" target="_blank" rel="noopener">Paper</a>
+            <span class="tag">TTS</span>
+            <span class="tag">Diffusion</span>
+          </div>
+        </article>
+        <article class="card pub">
+          <h3>Graph-based Substructure Pattern Mining with Edge-Weight</h3>
+          <p class="meta">Md Ashraful Islam et al. &middot; <em>Applied Intelligence</em>, 2024</p>
+          <div class="tags">
+            <a class="tag" href="https://link.springer.com/article/10.1007/s10489-024-05356-7" target="_blank" rel="noopener">Paper</a>
+            <span class="tag">Graph Mining</span>
           </div>
         </article>
       </div>
+      <p style="margin-top:12px"><a class="btn" href="publication.html">All Publications &rarr;</a></p>
+    </section>
 
-      <details style="margin-top: 12px;">
-        <summary>Show full list</summary>
-        <div class="grid" style="margin-top: 12px;">
-          <article class="card pub">
-            <h3>APANMemory for Dynamic Link Prediction</h3>
-            <p class="meta">Tech Report, 2025</p>
-            <p>Mailbox-efficient memory variant for APAN with configurable capacity and fast negative sampling.</p>
-            <div class="tags">
-              <a class="tag" href="#">PDF</a>
-              <a class="tag" href="#">Code</a>
-              <span class="tag">Graph ML</span>
-            </div>
-          </article>
-        </div>
-      </details>
-    </section> -->
-
-    <!-- Software / Projects -->
     <section id="software">
       <h2>Software</h2>
       <div class="grid two">
@@ -209,6 +220,17 @@
           <span class="tag">Temporal GNN</span>
         </div>
       </div>
+
+        <div class="card">
+          <h3 style="margin-top:0">Kalypso</h3>
+          <p>Relational LLM serving system for semantic query processing: structured context batching and KV-cache reuse across queries sharing relational context.</p>
+          <div class="tags">
+            <a class="tag" href="https://arxiv.org/abs/2607.23815" target="_blank" rel="noopener">arXiv</a>
+            <span class="tag">LLM Serving</span>
+            <span class="tag">Relational AI</span>
+            <span class="tag">Database Systems</span>
+          </div>
+        </div>
 
         <div class="card">
           <h3 style="margin-top:0">WFSPM</h3>
@@ -244,6 +266,44 @@
         </div>
 
 
+      </div>
+      <p style="margin-top:4px"><a class="btn" href="projects.html">See all projects &rarr;</a></p>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+      <h2>Skills</h2>
+      <div class="card">
+        <p><strong>Languages:</strong> Python, C++, C, Java, SQL, JavaScript</p>
+        <p><strong>ML/Graph Frameworks:</strong> PyTorch, PyG, DGL, CUDA (custom kernels), PyTorch DDP, NCCL</p>
+        <p><strong>Databases &amp; Systems:</strong> PostgreSQL, SQLite, Linux, Git, Docker</p>
+        <p><strong>Profiling &amp; Optimization:</strong> PyTorch Profiler, nvprof, perf</p>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience">
+      <h2>Experience</h2>
+      <div class="grid">
+        <div class="card">
+          <ul>
+            <li>
+              <strong>Research Intern</strong>, Tursio Inc. &mdash; Bellevue, WA
+              <span class="pill" style="margin-left:8px">Jun &ndash; Aug 2026</span>
+              <br>Built context-graph enrichment pipeline for an agentic NL-to-SQL system; added LLM-in-the-loop result interpretation producing provenance-linked explanations.
+            </li>
+            <li>
+              <strong>Assistant Professor</strong>, University of Dhaka &mdash; Dhaka, Bangladesh
+              <span class="pill" style="margin-left:8px">Sep 2019 &ndash; Aug 2023</span>
+              <br>Taught Algorithms, Database Systems, ML (30&ndash;60 students/class); supervised 6+ MSc/undergrad theses; co-PI on two funded projects.
+            </li>
+            <li>
+              <strong>Lecturer</strong>, East West University &mdash; Dhaka, Bangladesh
+              <span class="pill" style="margin-left:8px">Apr 2018 &ndash; Aug 2019</span>
+              <br>Taught Data Structures, Algorithms, and Discrete Mathematics.
+            </li>
+          </ul>
+        </div>
       </div>
     </section>
 
@@ -315,7 +375,7 @@
     "name": "Md Ashraful Islam",
     "jobTitle": "PhD Student",
     "affiliation": {"@type": "Organization", "name": "University of Massachusetts Amherst"},
-    "email": "mailto:your.name@umass.edu",
+    "email": "mailto:mdashrafulis@umass.edu",
     "url": "https://cseduashraful.github.io/",
     "sameAs": [
       "https://github.com/cseduashraful",

@@ -3,24 +3,71 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>All News — Md Ashraful Islam</title>
-  <meta name="description" content="All news and updates from Md Ashraful Islam." />
+  <title>Publications — Md Ashraful Islam</title>
+  <meta name="description" content="Full list of publications by Md Ashraful Islam." />
   <link rel="icon" href="assets/favicon.ico" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-<div id="header"></div>
-<script>
-  fetch('/header.html')
-    .then(resp => resp.text())
-    .then(html => document.getElementById('header').innerHTML = html);
-</script>
+<header>
+  <div class="container">
+    <div class="nav">
+      <a class="brand" href="index.html">Md Ashraful Islam</a>
+            <nav aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="publication.html">Publications</a>
+        <a href="news.html">News</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+      <div class="nav-spacer"></div>
+      <button class="btn" id="themeToggle" aria-pressed="false" title="Toggle theme">💡 Theme</button>
+    </div>
+  </div>
+</header>
 
   <main class="container">
         <!-- Publications -->
     <section id="publications">
-      <h2>Selected Publications & Preprints</h2>
+      <h2>Publications & Preprints</h2>
       <div class="grid">
+
+<article class="card pub">
+  <h3>PRISM: A Training System to Unlock the Potential of Temporal Graph Learning Through Staleness Avoidance</h3>
+  <p class="meta">Md Ashraful Islam, Hojae Son, Suhaas Kiran Doddagaddavalli Gangadharaiah, Marco Serafini &middot; <em>Proceedings of the VLDB Endowment</em>, 2026</p>
+  <p>Custom CUDA kernels build a memory computation graph; diffusion-based propagation eliminates staleness in M-TGNN training at large batch sizes.</p>
+  <div class="tags">
+    <a class="tag" href="prism.html">Project Page</a>
+    <a class="tag" href="pdf/PRISM.pdf" target="_blank">PDF</a>
+    <a class="tag" href="https://github.com/cseduashraful/PRISM" target="_blank" rel="noopener">Code</a>
+    <span class="tag">Temporal GNN</span>
+    <span class="tag">CUDA</span>
+    <span class="tag">ML Systems</span>
+  </div>
+</article>
+
+<article class="card pub">
+  <h3>Kalypso: Relational LLM Serving</h3>
+  <p class="meta">Hojae Son, Md Ashraful Islam, Huy Gia Cao, Hui Guan, Marco Serafini &middot; <em>arXiv:2607.23815</em>, 2026</p>
+  <p>LLM serving system for semantic query processing: structured context batching and KV-cache reuse across queries sharing relational context.</p>
+  <div class="tags">
+    <a class="tag" href="https://arxiv.org/abs/2607.23815" target="_blank" rel="noopener">arXiv</a>
+    <span class="tag">LLM Serving</span>
+    <span class="tag">Database Systems</span>
+    <span class="tag">Inference Optimization</span>
+  </div>
+</article>
+
+<article class="card pub">
+  <h3>STFT-GradTTS: A Robust, Diffusion-based Speech Synthesis System with iSTFT Decoder for Bangla</h3>
+  <p class="meta">Mushahid Intesum, Abdullah Ibne Masud, Md Rezaul Karim, Md Ashraful Islam &middot; <em>International Journal of Speech Technology</em>, 2025</p>
+  <div class="tags">
+    <a class="tag" href="https://link.springer.com/article/10.1007/s10772-025-10241-w" target="_blank" rel="noopener">Paper</a>
+    <span class="tag">TTS</span>
+    <span class="tag">Diffusion</span>
+    <span class="tag">Speech</span>
+  </div>
+</article>
 
 <article class="card pub">
   <h3>Graph-based Substructure Pattern Mining with Edge-Weight</h3>
@@ -42,9 +89,7 @@
 
       </div>
 
-      <details style="margin-top: 12px;">
-        <summary>Show full list</summary>
-        <div class="grid" style="margin-top: 12px;">
+
 
 
 <article class="card pub">
@@ -119,8 +164,6 @@
   </div>
 </article>
 
-        </div>
-      </details>
     </section>
   </main>
 
